@@ -64,6 +64,11 @@ user="$(id -u):$(id -g)"
 # to prevent "fatal: unable to look up current user in the passwd file: no such user" error from git
 git_fix="-e GIT_COMMITTER_NAME=devops -e GIT_COMMITTER_EMAIL=devops@lablup.com"
 
+echo '{ "experimental": true }' | sudo tee /etc/docker/daemon.json
+sudo systemctl restart docker
+
+docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+
 # docker build -t lablup/hook-dev:${distro_ver} -f Dockerfile.${distro_ver} .
 docker build --platform=linux/${arch} -t lablup/hook-dev:${distro_ver} -f Dockerfile.${distro_ver} .
 
