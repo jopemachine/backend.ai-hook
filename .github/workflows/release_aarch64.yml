@@ -22,7 +22,7 @@ jobs:
 
       - name: Build libbaihook
         run: |
-          docker run --rm -v "$(pwd)" ubuntu:latest /bin/bash -c "./build.sh ${{ matrix.os }}"
+          docker run --rm --platform linux/arm64 -v "$(pwd):/workspace" ubuntu:latest /bin/bash -c "./workspace/build.sh alpine"
 
       - name: Release to GitHub
         uses: softprops/action-gh-release@v2
