@@ -34,7 +34,7 @@ done
 
 distro="$1"
 
-arch="aarch64"
+# arch="aarch64"
 # arch="arm64"
 # arch="x86_64"
 # arch="$(uname -m)"
